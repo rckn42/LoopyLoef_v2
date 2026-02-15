@@ -1,0 +1,74 @@
+# Trading System Configuration
+# All parameters are configurable - no magic numbers in code
+
+# Operating Mode
+mode: backtest  # backtest | paper | live
+
+# Safety
+enable_live: false  # Must be manually enabled for live trading
+
+# Market & Exchange
+exchange: binance
+symbols:
+  - SOLUSDT
+  - XRPUSDT
+  - UNIUSDT
+
+# Timeframe
+base_tf: 30m  # 30m | 1h | 2h | 3h | 4h
+
+# Support/Resistance Strategy
+sr_lookback: 200  # Bars to look back for SR detection
+sr_atr_mult: 1.2  # ATR multiplier for zone tolerance
+touch_threshold: 2  # Minimum touches to confirm SR level
+min_swing_strength: 3  # Minimum bars between swing points
+
+# Trend Filter
+use_trend_filter: true
+trend_ema_fast: 50
+trend_ema_slow: 200
+trend_lookback_mult: 2  # Higher TF multiplier
+
+# Regime Filter
+use_regime_filter: true
+regime_atr_period: 20
+regime_vol_threshold: 1.5  # Volatility threshold for trending
+
+# Risk Management (Critical)
+risk_per_trade: 0.0275  # 2.75% of equity per trade
+max_gross_alloc: 0.275  # 27.5% maximum total exposure
+max_open_trades: 5
+max_daily_loss: 0.05  # 5% daily loss limit triggers kill switch
+stop_loss_atr_mult: 2.0  # Stop loss distance in ATR
+take_profit_r_mult: 2.0  # Take profit at 2R
+
+# Order Management
+order_type: market  # market | limit
+use_trailing_stop: false
+trailing_stop_callback: 0.01  # 1%
+
+# Slippage & Fees
+slippage_pct: 0.001  # 0.1% slippage
+maker_fee: 0.001  # 0.1%
+taker_fee: 0.001  # 0.1%
+
+# Backtesting
+backtest_start_date: "2023-01-01"
+backtest_end_date: "2024-12-31"
+initial_capital: 10000
+
+# Live Trading Safety
+heartbeat_interval: 60  # seconds
+position_reconcile_interval: 300  # seconds
+auto_reconnect: true
+max_reconnect_attempts: 5
+
+# Logging
+log_level: INFO  # DEBUG | INFO | WARNING | ERROR
+log_to_file: true
+log_to_console: true
+
+# Alerts (Optional)
+enable_telegram: false
+telegram_token: ""
+telegram_chat_id: ""
