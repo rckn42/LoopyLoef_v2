@@ -1,0 +1,2 @@
+# LoopyLoef
+ChatGPT trading algos
