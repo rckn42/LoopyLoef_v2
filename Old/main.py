@@ -71,24 +71,30 @@ def run_backtest_mode(config, logger):
                     interval=config['base_tf'],
                     start_date=config['backtest_start_date'],
                     end_date=config['backtest_end_date'],
-                    output_file=str(csv_file)
+                    output_file=str(csv_file)  # ← Saves to file
                 )
                 logger.info(f"Downloaded data for {symbol}")
             except Exception as e:
                 logger.error(f"Failed to download data for {symbol}: {e}")
                 continue
-        
+
         # Load from CSV (whether just downloaded or previously existing)
-        df = data_loader.load_csv(str(csv_file), symbol)
+        df = data_loader.load_csv(str(csv_file), symbol)  # ← Always loads from CSV
         logger.info(f"Loaded {len(df)} bars from {csv_file}")
-        
         # Filter date range
         df = data_loader.filter_date_range(
             df,
             config['backtest_start_date'],
             config['backtest_end_date']
-            )
+        )
         
+        # Add this check:
+        if len(df) == 0:
+            logger.error(f"No data for {symbol} in date range {config['backtest_start_date']} to {config['backtest_end_date']}")
+            continue
+
+        logger.info(f"After filtering: {len(df)} bars from {df.index[0]} to {df.index[-1]}")
+
         # Run backtest
         backtest = BacktestEngine(config)
         results = backtest.run_backtest(df, symbol)

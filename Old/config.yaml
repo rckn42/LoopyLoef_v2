@@ -52,7 +52,7 @@ taker_fee: 0.001  # 0.1%
 
 # Backtesting
 backtest_start_date: "2025-01-01"
-backtest_end_date: "2025-06-30"
+backtest_end_date: "2026-12-31"
 initial_capital: 10000
 
 # Live Trading Safety

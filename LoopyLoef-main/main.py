@@ -87,7 +87,7 @@ def run_backtest_mode(config, logger):
             df,
             config['backtest_start_date'],
             config['backtest_end_date']
-            )
+        )
         
         # Run backtest
         backtest = BacktestEngine(config)

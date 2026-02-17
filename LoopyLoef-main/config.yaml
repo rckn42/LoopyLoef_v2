@@ -13,7 +13,7 @@ symbols:
   - SOLUSDT
 
 # Timeframe
-base_tf: 3h  # 30m | 1h | 2h | 3h | 4h
+base_tf: 30m  # 30m | 1h | 2h | 3h | 4h
 
 # Support/Resistance Strategy
 sr_lookback: 200  # Bars to look back for SR detection
@@ -51,8 +51,8 @@ maker_fee: 0.001  # 0.1%
 taker_fee: 0.001  # 0.1%
 
 # Backtesting
-backtest_start_date: "2025-01-01"
-backtest_end_date: "2025-06-30"
+backtest_start_date: "2024-01-01"
+backtest_end_date: "2024-06-30"
 initial_capital: 10000
 
 # Live Trading Safety
